@@ -1,0 +1,23 @@
+{
+  "name": "auth",
+  "authors": [
+    "rabrux <rsalvador@wat.mx>"
+  ],
+  "description": "auth module for angularjs",
+  "main": "auth.js",
+  "moduleType": [],
+  "keywords": [
+    "auth",
+    "angular",
+    "module"
+  ],
+  "license": "MIT",
+  "homepage": "http://wacoon.co",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
