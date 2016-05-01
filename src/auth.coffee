@@ -20,7 +20,6 @@ angular.module( 'auth', [] )
           config.respondType = 'json'
           token = $db.get 'token'
           if token and config.url.indexOf( url ) == 0
-            console.log config
             config.headers['x-guid'] = token
           config
       }
@@ -87,7 +86,7 @@ angular.module( 'auth', [] )
               response
         ping: ->
           $http
-            .get "#{ url }/ping"
+            .post "#{ url }/ping"
             .success (response) ->
               response
             .error (response) ->

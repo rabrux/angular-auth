@@ -22,7 +22,6 @@
           config.respondType = 'json';
           token = $db.get('token');
           if (token && config.url.indexOf(url) === 0) {
-            console.log(config);
             config.headers['x-guid'] = token;
           }
           return config;
@@ -84,7 +83,7 @@
           });
         },
         ping: function() {
-          return $http.get(url + "/ping").success(function(response) {
+          return $http.post(url + "/ping").success(function(response) {
             return response;
           }).error(function(response) {
             return response;
