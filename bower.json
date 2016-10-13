@@ -1,7 +1,7 @@
 {
   "name": "auth",
   "authors": [
-    "rabrux <rsalvador@wat.mx>"
+    "rabrux <raul@alchimia.mx>"
   ],
   "description": "auth module for angularjs",
   "main": "auth.js",
@@ -12,7 +12,7 @@
     "module"
   ],
   "license": "MIT",
-  "homepage": "http://wacoon.co",
+  "homepage": "http://alchimia.mx",
   "ignore": [
     "**/.*",
     "node_modules",
