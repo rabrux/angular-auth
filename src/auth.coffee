@@ -1,4 +1,5 @@
-angular.module( 'auth', [] )
+angular
+  .module 'auth', []
   .provider 'auth', [ ->
     {
       baseUrl: ''
@@ -10,6 +11,7 @@ angular.module( 'auth', [] )
         }
     }
   ]
+  # Before Request Hook
   .factory 'beforeRequest', [
     '$localStorage'
     '$q'
@@ -20,7 +22,7 @@ angular.module( 'auth', [] )
           config.respondType = 'json'
           token = $db.get 'token'
           if token and config.url.indexOf( url ) == 0
-            config.headers['x-guid'] = token
+            config.headers['Authorization'] = token
           config
       }
   ]
@@ -54,42 +56,20 @@ angular.module( 'auth', [] )
   .service '$auth', [
     '$http'
     'baseUrl'
-    ($http, url) ->
+    '$localStorage'
+    ($http, url, $db) ->
       {
-        register: ( data ) ->
-          $http
-            .post url + '/register', angular.toJson( data )
-            .success (response) ->
-              response
-            .error (response) ->
-              response
-        verify: ( key ) ->
-          $http
-            .get "#{ url }/verify/#{ key }"
-            .success (response) ->
-              response
-            .error (response) ->
-              response
-        login: ( data ) ->
-          $http
-            .post "#{ url }/login", angular.toJson( data )
-            .success (response) ->
-              response
-            .error (response) ->
-              response
-        logout: ->
-          $http
-            .delete "#{ url }/logout"
-            .success (response) ->
-              response
-            .error (response) ->
-              response
-        ping: ->
-          $http
-            .post "#{ url }/ping"
-            .success (response) ->
-              response
-            .error (response) ->
-              response
+        register: ( data ) -> $http.post url + '/signup', angular.toJson( data )
+        verify: ( key ) -> $http.post "#{ url }/verify/#{ key }"
+        recovery: ( email ) -> $http.post "#{ url }/recovery", angular.toJson( { email: email } )
+        passwd: ( data ) -> $http.put "#{ url }/passwd", angular.toJson( data )
+        login: ( data ) -> $http.post "#{ url }/authenticate", angular.toJson( data )
+        ping: -> $http.get "#{ url }/ping"
+        saveCredentials: ( res ) ->
+          if !res or !res.token
+            return console.error 'SaveCredentials', res
+          $db.set 'token', res.token
+        loadCredentials: -> $db.get 'token'
+        deleteCredentials: -> $db.delete 'token'
       }
   ]

@@ -1,0 +1,26 @@
+{
+  "name": "angular-auth",
+  "version": "1.0.0",
+  "description": "angular auth module",
+  "main": "auth.js",
+  "scripts": {
+    "compile": "coffee -o . src/auth.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rabrux/angular-auth.git"
+  },
+  "keywords": [
+    "angular",
+    "auth"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rabrux/angular-auth/issues"
+  },
+  "homepage": "https://github.com/rabrux/angular-auth#readme",
+  "devDependencies": {
+    "coffee-script": "^1.11.1"
+  }
+}
