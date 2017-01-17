@@ -4,7 +4,7 @@
   "description": "angular auth module",
   "main": "auth.js",
   "scripts": {
-    "compile": "coffee -o . src/auth.coffee"
+    "build": "coffee -o . src/auth.coffee"
   },
   "repository": {
     "type": "git",

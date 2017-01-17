@@ -51,43 +51,6 @@
     'auth', function(auth) {
       return auth.baseUrl;
     }
-  ]).service('$auth', [
-    '$http', 'baseUrl', '$localStorage', function($http, url, $db) {
-      return {
-        register: function(data) {
-          return $http.post(url + '/signup', angular.toJson(data));
-        },
-        verify: function(key) {
-          return $http.post(url + "/verify/" + key);
-        },
-        recovery: function(email) {
-          return $http.post(url + "/recovery", angular.toJson({
-            email: email
-          }));
-        },
-        passwd: function(data) {
-          return $http.put(url + "/passwd", angular.toJson(data));
-        },
-        login: function(data) {
-          return $http.post(url + "/authenticate", angular.toJson(data));
-        },
-        ping: function() {
-          return $http.get(url + "/ping");
-        },
-        saveCredentials: function(res) {
-          if (!res || !res.token) {
-            return console.error('SaveCredentials', res);
-          }
-          return $db.set('token', res.token);
-        },
-        loadCredentials: function() {
-          return $db.get('token');
-        },
-        deleteCredentials: function() {
-          return $db["delete"]('token');
-        }
-      };
-    }
   ]);
 
 }).call(this);
